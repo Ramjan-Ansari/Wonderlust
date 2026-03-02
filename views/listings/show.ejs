@@ -7,15 +7,15 @@
 
 
 <div class="row mt-3">
-  <div class="col-8 offset-2">
-    <h3><b><%=listing.title %></b></h3>
-    <div class="card col-6">
+  <div class="col-11 mx-auto col-md-8 offset-md-2">
+    <h3 class="text-center"><b><%=listing.title %></b></h3>
+    <div class="card col-11 mx-auto col-md-6">
       <img
         src="<%=listing.image.url%>"
         class="card-img-top show-img"
         alt="listing_img"
       />
-      <div class="card-baby">
+      <div class="card-baby p-2">
         <p class="card-text">
           <i><%= listing.owner.username %></i> <br />
           <b><%=listing.title %></b> <br />
@@ -39,7 +39,7 @@
     <% } %>
   </div>
 
-  <div class="col-8 offset-2">
+  <div class="col-11 mx-auto col-md-8 offset-md-2">
     <hr />
     <% if( currUser ) { %>
     <h4>Leave a Review</h4>
@@ -120,10 +120,10 @@
     <% } %> 
     
     <% if(listing.reviews.length > 0){ %>
-    <div class="row ">
-      <p><b>All Reviews</b></p>
+    <div class="row  ">
+      <p><b>All Reviews</b></p> 
       <% for(review of listing.reviews){ %>
-      <div class="card col-5 mt-1 mb-3 ms-3">
+      <div class="card col-11 col-md-5 mt-1 mb-3 ms-3">
         <div class="card-body">
           <div class="card-title">@ <%= review.author.username %></div>
           <p class="starability-result" data-rating="<%= review.rating %>"></p>

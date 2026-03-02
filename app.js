@@ -8,15 +8,13 @@ const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require('method-override');
 const ejsMate = require("ejs-mate");
-const wrapAsync = require("./utils/wrapAsync.js");
-const Review = require("./models/review.js");
 const session = require("express-session");
-const MongoStore= require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const Localstratgy = require("passport-local");
 const User = require("./models/user.js");
 const userRouter = require("./routes/user.js");
+const ExpressError = require("./utils/ExpressError.js")
 
 
 
@@ -32,6 +30,8 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 let mongoose_url = process.env.MONGODB_URL;
+
+const port = process.env.PORT || 3000;
 
 async function main() {
   await mongoose.connect(mongoose_url);
@@ -85,9 +85,9 @@ app.use("/listings/:id/reviews", reviews);
 app.use("/", userRouter);
 
 
-// app.all("*", (req, res, next)=>{
-//   next(new ExpressError(404, "Page Not Found!"));
-// });
+app.use((req, res, next)=>{
+  next(new ExpressError(404, "Page Not Found!"));
+});
 
 app.use((err, req, res,next)=>{
   let {statusCode= 500, message= "Somthing Went Wrong"} = err;
@@ -96,6 +96,6 @@ app.use((err, req, res,next)=>{
 });
 
 
-app.listen(8080, () => {
-  console.log("server is listening to port: 8080");
+app.listen(port, () => {
+  console.log(`server is listening to port: ${port}`);
 });

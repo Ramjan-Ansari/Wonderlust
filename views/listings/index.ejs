@@ -33,10 +33,23 @@
     display:flex;
     align-items: center;
   }
+  .dp{
+    color: #121212;
+  }
+
+  @media (max-width:600px){
+    #filters{
+      margin: 1rem;
+    }
+    .filter{
+      flex: content;
+    }
+
+  }
 </style>
 
 
-  <div id="filters">
+  <div id="filters" class="">
     <div class="filter">
       <div><i class="fa-solid fa-fire"></i></div>
       <p>Trending</p>
@@ -81,7 +94,7 @@
     <div class="tex-toggle">
       <div class="form-check-reverse form-switch">
       <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-      <label class="form-check-label" for="switchCheckDefault">Display total after Texes</label>
+      <label class="dp form-check-label" for="switchCheckDefault">Display total after Texes</label>
       </div>
     </div>
   </div>
